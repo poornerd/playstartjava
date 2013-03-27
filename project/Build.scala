@@ -1,6 +1,7 @@
 import sbt._
 import Keys._
 import play.Project._
+import cloudbees.Plugin._
 
 object ApplicationBuild extends Build {
 
@@ -26,6 +27,6 @@ object ApplicationBuild extends Build {
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here    
     resolvers += Resolver.url("sbt-plugin-snapshots", new URL("http://repo.scala-sbt.org/scalasbt/sbt-plugin-snapshots/"))(Resolver.ivyStylePatterns)  
-  )
+  ).settings(cloudBeesSettings :_*).settings(CloudBees.applicationId := Some("playstartjava"))
 
 }
