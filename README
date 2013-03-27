@@ -7,20 +7,24 @@ This file will be packaged with your application, when using `play dist`.
 
 This application contains:
 
-    "org.webjars" % "webjars-play" % "2.1.0",  //    http://www.webjars.org/documentation#play2
+    "org.webjars" % "webjars-play" % "2.1.0",
+    // http://www.webjars.org/documentation#play2
 
-    "org.webjars" % "bootstrap" % "2.1.1", //       http://twitter.github.com/bootstrap
+    "org.webjars" % "bootstrap" % "2.1.1", 
+    // http://twitter.github.com/bootstrap
 
     "org.webjars" % "html5shiv" % "3.6.1",
 
-
     "org.webjars" % "bootswatch" % "2.2.2+1",
+    // http://bootswatch.com/
+
     "org.webjars" % "bootstrap-datepicker" % "1.0.1",
     "org.webjars" % "bootstrap-timepicker" % "0.2.1",
 
-    "securesocial" %% "securesocial" % "master-SNAPSHOT", //    http://securesocial.ws/
-    "com.typesafe" %% "play-plugins-mailer" % "2.1-RC2",
+    "securesocial" %% "securesocial" % "master-SNAPSHOT", 
+    // http://securesocial.ws/
 
 Deployment is on Cloudbees based on these instructions: http://developer.cloudbees.com/bin/view/RUN/Playframework
 
 
+More information about me at http://www.poornerd.com or follow me @poornerd on Twitter at http://twitter.com/poornerd
