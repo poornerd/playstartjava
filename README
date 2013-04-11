@@ -7,10 +7,10 @@ This file will be packaged with your application, when using `play dist`.
 
 This application contains:
 
-    "org.webjars" % "webjars-play" % "2.1.0",
+    "org.webjars" % "webjars-play" % "2.1.0-1",
     // http://www.webjars.org/documentation#play2
 
-    "org.webjars" % "bootstrap" % "2.1.1", 
+    "org.webjars" % "bootstrap" % "2.3.1", 
     // http://twitter.github.com/bootstrap
 
     "org.webjars" % "html5shiv" % "3.6.1",
