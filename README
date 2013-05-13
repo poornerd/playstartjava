@@ -1,6 +1,6 @@
 DEMO app:  http://playstartjava.poornerd.cloudbees.net
 
-This is your new Play 2.1 application
+This is your new Play 2.1.1 application
 =====================================
 
 This file will be packaged with your application, when using `play dist`.
@@ -15,7 +15,7 @@ This application contains:
 
     "org.webjars" % "html5shiv" % "3.6.1",
 
-    "org.webjars" % "bootswatch" % "2.2.2+1",
+    "org.webjars" % "bootswatch" % "2.3.1",
     // http://bootswatch.com/
 
     "org.webjars" % "bootstrap-datepicker" % "1.0.1",
