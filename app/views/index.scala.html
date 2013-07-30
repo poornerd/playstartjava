@@ -1,7 +1,24 @@
 @(message: String)
 
+@import com.feth.play.module.pa.views.html._ 
+
 @main("Welcome to Play 2.1") {
     
-    Test stuff
+    Test stuff.
     
+    <div>
+        Login Providers: 
+    @forProviders() { p =>
+        <a href="@p.getUrl()">@p.getKey()</a>
+    }
+    </div>
+    
+    @currentAuth() { auth =>
+        @if(auth != null) {
+            You are logged in with provider '@auth.getProvider()' and the user ID '@auth.getId()'.
+            <a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout">Logout</a>
+        } else {
+            You are not logged in.
+        }
+    }
 }
