@@ -4,8 +4,8 @@
 constraint.required=Pflichtfeld
 constraint.min=Minimaler Wert: {0}
 constraint.max=Maximaler Wert: {0}
-constraint.minLength=Minimale L\u00e4nge: {0}
-constraint.maxLength=Maximale L\u00e4nge: {0}
+constraint.minLength=Minimale Länge: {0}
+constraint.maxLength=Maximale Länge: {0}
 constraint.email=E-Mail
 
 # --- Formats
@@ -14,48 +14,48 @@ format.numeric=Numerisch
 format.real=Reelle Zahl
 
 # --- Errors
-error.invalid=Wert is unzul\u00e4ssig
+error.invalid=Wert is unzulässig
 error.required=Dieses Feld ist ein Pflichtfeld
 error.number=Numerischer Wert erwartet
 error.real=Reelle Zahl erwartet
-error.min=Muss gr\u00f6\u00dfer oder gleich {0} sein
+error.min=Muss größer oder gleich {0} sein
 error.max=Muss kleiner oder gleich {0} sein
-error.minLength=Die minimale L\u00e4nge betr\u00e4gt {0}
-error.maxLength=Die maximale L\u00e4nge betr\u00e4gt {0}
-error.email=G\u00fcltige E-Mail-Adresse erforderlich
+error.minLength=Die minimale Länge beträgt {0}
+error.maxLength=Die maximale Länge beträgt {0}
+error.email=Gültige E-Mail-Adresse erforderlich
 error.pattern=Muss dem Muster {0} entsprechen
 
 ### --- play-authenticate START
 
-playauthenticate.accounts.link.success=Das Konto wurde erfolgreich verkn\u00fcpft.
-playauthenticate.accounts.merge.success=Die Konten wurden erfolgreich zusammengef\u00fchrt.
+playauthenticate.accounts.link.success=Das Konto wurde erfolgreich verknüpft.
+playauthenticate.accounts.merge.success=Die Konten wurden erfolgreich zusammengeführt.
 
 playauthenticate.verify_email.error.already_validated=Ihre E-Mail-Adresse wurde bereits verifiziert.
-playauthenticate.verify_email.error.set_email_first=Sie m\u00fcssen zuerst eine E-Mail-Adresse definieren.
-playauthenticate.verify_email.message.instructions_sent=Instruktionen zur Best\u00e4tigung Ihrer E-Mail-Adresse wurden an {0} gesendet.
+playauthenticate.verify_email.error.set_email_first=Sie müssen zuerst eine E-Mail-Adresse definieren.
+playauthenticate.verify_email.message.instructions_sent=Instruktionen zur Bestätigung Ihrer E-Mail-Adresse wurden an {0} gesendet.
 playauthenticate.verify_email.success=E-Mail-Adresse ({0}) wurde erfolgreich verifiziert.
 
-playauthenticate.reset_password.message.instructions_sent=Instruktionen zum Zur\u00fccksetzen Ihres Passwortes wurden an {0} versandt.
-playauthenticate.reset_password.message.email_not_verified=Ihre E-Mail-Adresse wurde noch nicht verifiziert. Instruktionen zum Verifizieren der E-Mail-Adresse wurden versendet. Versuchen Sie danach nochmals, Ihr Passwort zur\u00fcckzusetzen!
-playauthenticate.reset_password.message.no_password_account=Ihre Benutzer wurde f\u00fcr die Verwendung eines Passwort-basierten Zugangs noch nicht aktiviert.
-playauthenticate.reset_password.message.success.auto_login=Ihr Passwort wurde erfolgreich zur\u00fcckgesetzt.
-playauthenticate.reset_password.message.success.manual_login=Ihr Passwort wurde erfolgreich zur\u00fcckgesetzt. Bitte melden Sie sich jetzt mit Ihrem neuen Passwort an.
+playauthenticate.reset_password.message.instructions_sent=Instruktionen zum Zurücksetzen Ihres Passwortes wurden an {0} versandt.
+playauthenticate.reset_password.message.email_not_verified=Ihre E-Mail-Adresse wurde noch nicht verifiziert. Instruktionen zum Verifizieren der E-Mail-Adresse wurden versendet. Versuchen Sie danach nochmals, Ihr Passwort zurückzusetzen!
+playauthenticate.reset_password.message.no_password_account=Ihre Benutzer wurde für die Verwendung eines Passwort-basierten Zugangs noch nicht aktiviert.
+playauthenticate.reset_password.message.success.auto_login=Ihr Passwort wurde erfolgreich zurückgesetzt.
+playauthenticate.reset_password.message.success.manual_login=Ihr Passwort wurde erfolgreich zurückgesetzt. Bitte melden Sie sich jetzt mit Ihrem neuen Passwort an.
 
-playauthenticate.change_password.error.passwords_not_same=Die Passw\u00f6rter stimmen nicht \u00fcberein.
-playauthenticate.change_password.success=Das Passwort wurde erfolgreich ge\u00e4ndert.
+playauthenticate.change_password.error.passwords_not_same=Die Passwörter stimmen nicht überein.
+playauthenticate.change_password.success=Das Passwort wurde erfolgreich geändert.
 
-playauthenticate.password.signup.error.passwords_not_same=Die Passw\u00f6rter stimmen nicht \u00fcberein.
+playauthenticate.password.signup.error.passwords_not_same=Die Passwörter stimmen nicht überein.
 playauthenticate.password.login.unknown_user_or_pw=Der Benutzer wurde nicht gefunden oder das Passwort stimmt nicht.
 
-playauthenticate.password.verify_signup.subject=PlayAuthenticate: Vervollst\u00e4ndigen Sie Ihre Anmeldung
-playauthenticate.password.verify_email.subject=PlayAuthenticate: E-Mail-Adresse best\u00e4tigen
-playauthenticate.password.reset_email.subject=PlayAuthenticate: Anleitung zum Passwortzur\u00fccksetzen
+playauthenticate.password.verify_signup.subject=PlayAuthenticate: Vervollständigen Sie Ihre Anmeldung
+playauthenticate.password.verify_email.subject=PlayAuthenticate: E-Mail-Adresse bestätigen
+playauthenticate.password.reset_email.subject=PlayAuthenticate: Anleitung zum Passwortzurücksetzen
 
 # play-authenticate: Additional translations
 
 playauthenticate.login.email.placeholder=Ihre E-Mail-Adresse
-playauthenticate.login.password.placeholder=W\u00e4hlen Sie ein Passwort
-playauthenticate.login.password.repeat=Wiederholen Sie das gew\u00e4hlte Passwort
+playauthenticate.login.password.placeholder=Wählen Sie ein Passwort
+playauthenticate.login.password.repeat=Wiederholen Sie das gewählte Passwort
 playauthenticate.login.title=Anmeldung
 playauthenticate.login.password.placeholder=Passwort
 playauthenticate.login.now=Jetzt anmelden
@@ -69,39 +69,39 @@ playauthenticate.signup.now=Jetzt registrieren
 playauthenticate.signup.oauth=oder registrieren Sie sich mit einem der folgenden Dienste:
 
 playauthenticate.verify.account.title=Verifikation der E-Mail-Adresse erforderlich
-playauthenticate.verify.account.before=Bevor Sie ein Passwort vergeben k\u00f6nnen,
-playauthenticate.verify.account.first=m\u00fcssen Sie zuerst Ihre E-Mail-Adresse verifizieren
+playauthenticate.verify.account.before=Bevor Sie ein Passwort vergeben können,
+playauthenticate.verify.account.first=müssen Sie zuerst Ihre E-Mail-Adresse verifizieren
 
-playauthenticate.change.password.title=\u00c4ndern Sie Ihr Passwort hier
-playauthenticate.change.password.cta=Mein Passwort \u00e4ndern
+playauthenticate.change.password.title=Ändern Sie Ihr Passwort hier
+playauthenticate.change.password.cta=Mein Passwort ändern
 
-playauthenticate.merge.accounts.title=Konten zusammenf\u00fchren
-playauthenticate.merge.accounts.question=M\u00f6chten Sie Ihr aktuelles Konto ({0}) mit diesem zusammenf\u00fchren: {1}?
-playauthenticate.merge.accounts.true=Ja, diese Konten zusammenf\u00fchren
+playauthenticate.merge.accounts.title=Konten zusammenführen
+playauthenticate.merge.accounts.question=Möchten Sie Ihr aktuelles Konto ({0}) mit diesem zusammenführen: {1}?
+playauthenticate.merge.accounts.true=Ja, diese Konten zusammenführen
 playauthenticate.merge.accounts.false=Nein, meine aktuelle Sizung beenden und mit dem neuen Benutzer anmelden
 playauthenticate.merge.accounts.ok=OK
 
-playauthenticate.link.account.title=Konto verkn\u00fcpfen
-playauthenticate.link.account.question=Konto ({0}) mit Ihrem Benutzer verkn\u00fcpfen?
-playauthenticate.link.account.true=Ja, dieses Konto mit meinem Benutzer verkn\u00fcpfen
+playauthenticate.link.account.title=Konto verknüpfen
+playauthenticate.link.account.question=Konto ({0}) mit Ihrem Benutzer verknüpfen?
+playauthenticate.link.account.true=Ja, dieses Konto mit meinem Benutzer verknüpfen
 playauthenticate.link.account.false=Nein, abmelden und einen neuen Benutzer mit diesem Konto erstellen
 playauthenticate.link.account.ok=OK
 
 # play-authenticate: Signup folder translations
 
-playauthenticate.verify.email.title=E-Mail-Adresse best\u00e4tigen
-playauthenticate.verify.email.requirement=Sie m\u00fcssen Ihre E-Mail-Adresse best\u00e4tigen, bevor Sie die Authentifizierung nutzen k\u00f6nnen.
-playauthenticate.verify.email.cta=Eine E-Mail wurde zur registrierten E-Mail-Adresse versandt. Bitte \u00f6ffnen Sie sie und klicken auf den enthaltenen Link, um Ihren Account zu aktivieren.
+playauthenticate.verify.email.title=E-Mail-Adresse bestätigen
+playauthenticate.verify.email.requirement=Sie müssen Ihre E-Mail-Adresse bestätigen, bevor Sie die Authentifizierung nutzen können.
+playauthenticate.verify.email.cta=Eine E-Mail wurde zur registrierten E-Mail-Adresse versandt. Bitte öffnen Sie sie und klicken auf den enthaltenen Link, um Ihren Account zu aktivieren.
 
-playauthenticate.password.reset.title=Passwort zur\u00fccksetzen
-playauthenticate.password.reset.cta=Passwort zur\u00fccksetzen
+playauthenticate.password.reset.title=Passwort zurücksetzen
+playauthenticate.password.reset.cta=Passwort zurücksetzen
 
 playauthenticate.password.forgot.title=Passwort vergessen
-playauthenticate.password.forgot.cta=Informationen zum Zur\u00fccksetzen versenden
+playauthenticate.password.forgot.cta=Informationen zum Zurücksetzen versenden
 
 playauthenticate.oauth.access.denied.title=OAuth-Zugriff abgelehnt
-playauthenticate.oauth.access.denied.explanation=Wenn Sie die Authentifizierung mit OAuth nutzen m\u00f6chten, m\u00fcssen Sie die Verbindung akzeptieren.
-playauthenticate.oauth.access.denied.alternative=Falls Sie dies lieber nicht tun m\u00f6chten, k\u00f6nnen Sie sich auch
+playauthenticate.oauth.access.denied.explanation=Wenn Sie die Authentifizierung mit OAuth nutzen möchten, müssen Sie die Verbindung akzeptieren.
+playauthenticate.oauth.access.denied.alternative=Falls Sie dies lieber nicht tun möchten, können Sie sich auch
 playauthenticate.oauth.access.denied.alternative.cta=mit Benutzername und Passwort registrieren
 
 playauthenticate.token.error.title=Token-Fehler
@@ -112,39 +112,39 @@ playauthenticate.user.exists.message=Dieser Benutzer existiert bereits.
 
 # play-authenticate: Navigation
 playauthenticate.navigation.profile=Profil
-playauthenticate.navigation.link_more=Mehr Zug\u00e4nge verkn\u00fcpfen
+playauthenticate.navigation.link_more=Mehr Zugänge verknüpfen
 playauthenticate.navigation.logout=Abmelden
 playauthenticate.navigation.login=Anmelden
 playauthenticate.navigation.home=Startseite
-playauthenticate.navigation.restricted=Gesch\u00fctzte Seite
+playauthenticate.navigation.restricted=Geschützte Seite
 playauthenticate.navigation.signup=Registrieren
 
 # play-authenticate: Handler
-playauthenticate.handler.loginfirst=Sie m\u00fcssen sich zuerst anmelden, um ''{0}'' anzuzeigen
+playauthenticate.handler.loginfirst=Sie müssen sich zuerst anmelden, um ''{0}'' anzuzeigen
 
 
 # play-authenticate: Profile
 playauthenticate.profile.title=Benutzerprofil
 playauthenticate.profile.mail=Ihr Name lautet {0} und Ihre E-Mail-Adresse ist {1}!
-playauthenticate.profile.unverified=unverifiziert - Klicken Sie, um zu best\u00e4tigen
+playauthenticate.profile.unverified=unverifiziert - Klicken Sie, um zu bestätigen
 playauthenticate.profile.verified=verifiziert
-playauthenticate.profile.providers_many=Es sind {0} Konten mit Ihrem Benutzer verkn\u00fcpft:
-playauthenticate.profile.providers_one=Es ist ein Konto mit Ihrem Benutzer verkn\u00fcpft:
+playauthenticate.profile.providers_many=Es sind {0} Konten mit Ihrem Benutzer verknüpft:
+playauthenticate.profile.providers_one=Es ist ein Konto mit Ihrem Benutzer verknüpft:
 playauthenticate.profile.logged=Sie sind momentan eingeloggt mit:
-playauthenticate.profile.session=Ihre Benutzer-Identifikation ist {0} und Ihre Sitzung l\u00e4uft {1} ab
-playauthenticate.profile.session_endless=Ihre Benutzer-Identifikation ist {0} und Ihre Sitzung l\u00e4uft nie ab
-playauthenticate.profile.password_change=\u00c4ndern/setzen Sie ein Passwort f\u00fcr Ihren Benutzer
+playauthenticate.profile.session=Ihre Benutzer-Identifikation ist {0} und Ihre Sitzung läuft {1} ab
+playauthenticate.profile.session_endless=Ihre Benutzer-Identifikation ist {0} und Ihre Sitzung läuft nie ab
+playauthenticate.profile.password_change=Ändern/setzen Sie ein Passwort für Ihren Benutzer
 
 # play-authenticate - sample: Index page
 playauthenticate.index.title=Willkommen bei PlayAuthenticate
 playauthenticate.index.intro=PlayAuthenticate Beispiel-Applikation
-playauthenticate.index.intro_2=Dies ist eine Blaupause f\u00fcr eine einfache Applikation mit Authentifikation.
-playauthenticate.index.intro_3=Schau dir die Navigation oben an, um einfache Beispielseiten inklusive der unterst\u00fctzten Authentifikationsmethoden zu sehen.
-playauthenticate.index.heading=\u00dcberschrift
+playauthenticate.index.intro_2=Dies ist eine Blaupause für eine einfache Applikation mit Authentifikation.
+playauthenticate.index.intro_3=Schau dir die Navigation oben an, um einfache Beispielseiten inklusive der unterstützten Authentifikationsmethoden zu sehen.
+playauthenticate.index.heading=Überschrift
 playauthenticate.index.details=Details anzeigen
 
 # play-authenticate - sample: Restricted page
-playauthenticate.restricted.secrets=\u00dcberall Geheimnisse!
+playauthenticate.restricted.secrets=Überall Geheimnisse!
 
 
 ### --- play-authenticate END
