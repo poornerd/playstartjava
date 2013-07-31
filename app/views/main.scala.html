@@ -4,16 +4,12 @@
 <html>
     @head(title)
 <body>
-
+    <div class="container">
     @menu()
 
-    <div class="container-fluid">
-        <button id="showModalButton" class="btn btn-primary btn-large"><i class="icon-exclamation-sign icon-white"></i> Show a Modal</button>
-        @content
-    </div>
-
+    @content
     
     @footer()
-    
+    </div>
 </body>
 </html>

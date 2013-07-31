@@ -1,1 +1,4 @@
 1500:com.typesafe.plugin.CommonsMailerPlugin
+10000:be.objectify.deadbolt.java.DeadboltPlugin
+10040:providers.MyUsernamePasswordAuthProvider
+10050:com.feth.play.module.pa.providers.openid.OpenIdAuthProvider

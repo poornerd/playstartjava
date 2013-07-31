@@ -1,0 +1,12 @@
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+.authProviders {
+    margin: 5px 0;
+    list-style: none;
+    li {
+        display: inline;
+    }
+}
+

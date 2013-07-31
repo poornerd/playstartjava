@@ -1,0 +1,64 @@
+@(loginForm: Form[_])
+
+@import helper._
+@import helper.twitterBootstrap._
+@import be.objectify.deadbolt.java.views.html._
+@import be.objectify.deadbolt.core.utils.TemplateUtils._
+@import com.feth.play.module.pa.providers.AuthProvider.Registry
+
+@main(Messages("playauthenticate.login.title")) {
+
+  <div class="row">
+    <div class="span12">
+      <h1>@Messages("playauthenticate.login.title")</h1>
+    </div>
+  </div>
+    
+  <div id="login" class="row">
+
+    <div class="span9">
+      @* Display proprietary login form *@
+    	@helper.form(routes.Application.doLogin) {
+    	
+        @if(loginForm.hasGlobalErrors) { 
+          <p class="error">
+            <span class="label label-important">@loginForm.globalError.message</span>
+          </p>
+        }
+        
+        @_emailPartial(loginForm)
+          
+        @inputPassword(
+          loginForm("password"),
+          '_showConstraints -> false,
+          '_label -> Messages("playauthenticate.login.password.placeholder")
+        )
+          
+        <input type="submit" value="@Messages("playauthenticate.login.now")" class="btn btn-primary"><br/>
+        <br/>
+        <a href="javascript:void(0);" onclick="window.location.href = jsRoutes.controllers.Signup.forgotPassword($('#email').val() || null).absoluteURL();">@Messages("playauthenticate.login.forgot.password")</a>
+    	}
+    </div>
+
+    <div class="span3">
+        @subjectNotPresent() {
+        <div class="row">
+            <p>@Messages("playauthenticate.signup.noAccountYet")</p>
+            <a class="btn btn-success" href="@routes.Application.signup()">@Messages("playauthenticate.navigation.signup")</a>
+            <br/><br/>
+        </div>
+        }
+        @defining(Registry.getProviders()) { providers =>
+            @if(providers != null && providers.size() > 0) {
+            <div class="row">
+                @Messages("playauthenticate.login.oauth")
+                @* Display list of available providers *@
+                @_providerPartial(skipCurrent=false)
+            </div>
+            }
+        }
+    </div>
+
+  </div>
+
+}

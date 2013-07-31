@@ -16,9 +16,10 @@ object ApplicationBuild extends Build {
     "org.webjars" % "bootstrap-datepicker" % "1.0.1",
     "org.webjars" % "bootstrap-timepicker" % "0.2.1",
 
+    "be.objectify"  %%  "deadbolt-java"     % "2.1-RC2",
     "com.feth"     %%  "play-authenticate" % "0.3.0-SNAPSHOT",
     "com.typesafe" %% "play-plugins-mailer" % "2.1-RC2",
-    // Add your project dependencies here,
+    "postgresql"    %   "postgresql"        % "9.1-901-1.jdbc4",
     javaCore,
     javaJdbc,
     javaEbean
@@ -27,6 +28,9 @@ object ApplicationBuild extends Build {
   val main = play.Project(appName, appVersion, appDependencies).settings(
     // Add your own project settings here    
     resolvers += Resolver.url("sbt-plugin-snapshots", new URL("http://repo.scala-sbt.org/scalasbt/sbt-plugin-snapshots/"))(Resolver.ivyStylePatterns),  
+
+    resolvers += Resolver.url("Objectify Play Repository (release)", url("http://schaloner.github.com/releases/"))(Resolver.ivyStylePatterns),
+    resolvers += Resolver.url("Objectify Play Repository (snapshot)", url("http://schaloner.github.com/snapshots/"))(Resolver.ivyStylePatterns),
 
     resolvers += Resolver.url("play-easymail (release)", url("http://joscha.github.com/play-easymail/repo/releases/"))(Resolver.ivyStylePatterns),
     resolvers += Resolver.url("play-easymail (snapshot)", url("http://joscha.github.com/play-easymail/repo/snapshots/"))(Resolver.ivyStylePatterns),	  

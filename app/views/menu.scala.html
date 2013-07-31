@@ -1,18 +1,38 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
+@import be.objectify.deadbolt.java.views.html._
+@import be.objectify.deadbolt.core.utils.TemplateUtils._
+
+<div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
-        <div class="container-fluid">
-            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            <a class="brand" href="#">Project name</a>
+            </a>
+            <a class="brand" href="@routes.Application.index()">Project Name</a>
             <div class="nav-collapse collapse">
-                <p class="navbar-text pull-right">
-                    Logged in as <a href="#" class="navbar-link">Username</a>
-                </p>
+                    @subjectPresentOr() {
+                       @defining(Application.getLocalUser(session())) { user =>
+                       <ul class="nav pull-right">
+                           <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-user"></i> @user.name
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@routes.Application.profile()">@Messages("playauthenticate.navigation.profile")</a></li>
+                                    <li><a href="@routes.Account.link()">@Messages("playauthenticate.navigation.link_more")</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout()"><i class="icon-off"></i> @Messages("playauthenticate.navigation.logout")</a></li>
+                                </ul>
+                           </li>
+                       </ul>
+                       }
+                    }{
+                        <form action="@routes.Application.login()" method="GET" class="navbar-form pull-right"><button type="submit" class="btn btn-primary">@Messages("playauthenticate.navigation.login")</button></form>
+                    }
                 <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="@routes.Application.index()">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
