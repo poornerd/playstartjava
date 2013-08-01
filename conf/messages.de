@@ -14,7 +14,7 @@ format.numeric=Numerisch
 format.real=Reelle Zahl
 
 # --- Errors
-error.invalid=Wert is unzulässig
+error.invalid=Wert ist unzulässig
 error.required=Dieses Feld ist ein Pflichtfeld
 error.number=Numerischer Wert erwartet
 error.real=Reelle Zahl erwartet
