@@ -1,6 +1,8 @@
-package providers;
+package auth.providers;
 
-import providers.MyUsernamePasswordAuthProvider.MySignup;
+
+
+import auth.providers.MyUsernamePasswordAuthProvider.MySignup;
 
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
 import com.feth.play.module.pa.user.NameIdentity;

@@ -1,6 +1,6 @@
 package security;
 
-import models.User;
+import models.sec.User;
 import play.mvc.Http;
 import play.mvc.Result;
 import be.objectify.deadbolt.java.AbstractDeadboltHandler;

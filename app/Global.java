@@ -1,7 +1,7 @@
 
 import java.util.Arrays;
 
-import models.SecurityRole;
+import models.sec.SecurityRole;
 
 import com.feth.play.module.pa.PlayAuthenticate;
 import com.feth.play.module.pa.PlayAuthenticate.Resolver;
@@ -46,18 +46,18 @@ public class Global extends GlobalSettings {
 
             @Override
             public Call askMerge() {
-                return routes.Account.askMerge();
+                return controllers.sec.routes.Account.askMerge();
             }
 
             @Override
             public Call askLink() {
-                return routes.Account.askLink();
+                return controllers.sec.routes.Account.askLink();
             }
 
             @Override
             public Call onException(final AuthException e) {
                 if (e instanceof AccessDeniedException) {
-                    return routes.Signup
+                    return controllers.sec.routes.Signup
                             .oAuthDenied(((AccessDeniedException) e)
                             .getProviderKey());
                 }

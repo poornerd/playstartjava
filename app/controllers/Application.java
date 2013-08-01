@@ -5,7 +5,6 @@ import java.util.Date;
 import play.*;
 import play.data.Form;
 import play.mvc.*;
-import play.mvc.Result;
 import static play.mvc.Controller.ctx;
 import static play.mvc.Controller.response;
 import static play.mvc.Controller.session;
@@ -13,7 +12,12 @@ import static play.mvc.Results.badRequest;
 import static play.mvc.Results.ok;
 
 import views.html.*;
+import views.html.account.*;
+import views.html.account.signup.*;
 
+import auth.providers.MyUsernamePasswordAuthProvider;
+import auth.providers.MyUsernamePasswordAuthProvider.MyLogin;
+import auth.providers.MyUsernamePasswordAuthProvider.MySignup;
 import be.objectify.deadbolt.java.actions.Group;
 import be.objectify.deadbolt.java.actions.Restrict;
 
@@ -21,11 +25,8 @@ import com.feth.play.module.pa.PlayAuthenticate;
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthProvider;
 import com.feth.play.module.pa.user.AuthUser;
 
-import providers.MyUsernamePasswordAuthProvider;
-import providers.MyUsernamePasswordAuthProvider.MyLogin;
-import providers.MyUsernamePasswordAuthProvider.MySignup;
 
-import models.User;
+import models.sec.User;
 
 public class Application extends Controller {
 
@@ -81,7 +82,7 @@ public class Application extends Controller {
     public static Result jsRoutes() {
         return ok(
                 Routes.javascriptRouter("jsRoutes",
-                controllers.routes.javascript.Signup.forgotPassword()))
+                controllers.sec.routes.javascript.Signup.forgotPassword()))
                 .as("text/javascript");
     }
 

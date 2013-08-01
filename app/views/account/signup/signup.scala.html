@@ -29,9 +29,9 @@
                 '_label -> Messages("playauthenticate.signup.name")
              )
              
-             @_emailPartial(signupForm)
+             @account._emailPartial(signupForm)
              
-             @_passwordPartial(signupForm)
+             @account._passwordPartial(signupForm)
 
             <input type="submit" value="@Messages("playauthenticate.signup.now")" class="btn btn-primary">
     	}
@@ -42,7 +42,7 @@
             <div class="row">
                 @Messages("playauthenticate.login.oauth")
                 @* Display list of available providers *@
-                @_providerPartial(skipCurrent=false)
+                @account._providerPartial(skipCurrent=false)
             </div>
             }
         }

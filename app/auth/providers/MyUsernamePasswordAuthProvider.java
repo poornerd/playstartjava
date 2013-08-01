@@ -1,14 +1,15 @@
-package providers;
+package auth.providers;
+
 
 import com.feth.play.module.mail.Mailer.Mail.Body;
 import com.feth.play.module.pa.PlayAuthenticate;
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthProvider;
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
 import controllers.routes;
-import models.LinkedAccount;
-import models.TokenAction;
-import models.TokenAction.Type;
-import models.User;
+import models.sec.LinkedAccount;
+import models.sec.TokenAction;
+import models.sec.User;
+import models.sec.TokenAction.Type;
 import play.Application;
 import play.Logger;
 import play.data.Form;
@@ -177,12 +178,12 @@ public class MyUsernamePasswordAuthProvider
 
 	@Override
 	protected Call userExists(final UsernamePasswordAuthUser authUser) {
-		return routes.Signup.exists();
+		return controllers.sec.routes.Signup.exists();
 	}
 
 	@Override
 	protected Call userUnverified(final UsernamePasswordAuthUser authUser) {
-		return routes.Signup.unverified();
+		return controllers.sec.routes.Signup.unverified();
 	}
 
 	@Override
@@ -224,7 +225,7 @@ public class MyUsernamePasswordAuthProvider
 
 		final boolean isSecure = getConfiguration().getBoolean(
 				SETTING_KEY_VERIFICATION_LINK_SECURE);
-		final String url = routes.Signup.verify(token).absoluteURL(
+		final String url = controllers.sec.routes.Signup.verify(token).absoluteURL(
 				ctx.request(), isSecure);
 
 		final Lang lang = Lang.preferred(ctx.request().acceptLanguages());
@@ -273,7 +274,7 @@ public class MyUsernamePasswordAuthProvider
 
 		final boolean isSecure = getConfiguration().getBoolean(
 				SETTING_KEY_PASSWORD_RESET_LINK_SECURE);
-		final String url = routes.Signup.resetPassword(token).absoluteURL(
+		final String url = controllers.sec.routes.Signup.resetPassword(token).absoluteURL(
 				ctx.request(), isSecure);
 
 		final Lang lang = Lang.preferred(ctx.request().acceptLanguages());
@@ -354,7 +355,7 @@ public class MyUsernamePasswordAuthProvider
 
 		final boolean isSecure = getConfiguration().getBoolean(
 				SETTING_KEY_VERIFICATION_LINK_SECURE);
-		final String url = routes.Signup.verify(token).absoluteURL(
+		final String url = controllers.sec.routes.Signup.verify(token).absoluteURL(
 				ctx.request(), isSecure);
 
 		final Lang lang = Lang.preferred(ctx.request().acceptLanguages());

@@ -1,4 +1,4 @@
-package models;
+package models.sec;
 
 import be.objectify.deadbolt.core.models.Permission;
 import be.objectify.deadbolt.core.models.Role;
@@ -12,11 +12,14 @@ import com.feth.play.module.pa.user.AuthUserIdentity;
 import com.feth.play.module.pa.user.EmailIdentity;
 import com.feth.play.module.pa.user.NameIdentity;
 import com.feth.play.module.pa.user.FirstLastNameIdentity;
-import models.TokenAction.Type;
+
 import play.data.format.Formats;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+
+import models.sec.TokenAction.Type;
+
 import java.util.*;
 
 /**

@@ -1,19 +1,24 @@
-package controllers;
+package controllers.sec;
 
-import models.TokenAction;
-import models.TokenAction.Type;
-import models.User;
+import models.sec.TokenAction;
+import models.sec.TokenAction.Type;
+import models.sec.User;
 import play.data.Form;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
-import providers.MyLoginUsernamePasswordAuthUser;
-import providers.MyUsernamePasswordAuthProvider;
-import providers.MyUsernamePasswordAuthProvider.MyIdentity;
-import providers.MyUsernamePasswordAuthUser;
+import auth.providers.MyLoginUsernamePasswordAuthUser;
+import views.html.account.*;
 import views.html.account.signup.*;
 
+import auth.providers.MyUsernamePasswordAuthProvider;
+import auth.providers.MyUsernamePasswordAuthUser;
+import auth.providers.MyUsernamePasswordAuthProvider.MyIdentity;
+
 import com.feth.play.module.pa.PlayAuthenticate;
+
+import controllers.Application;
+import controllers.routes;
 
 import static play.data.Form.form;
 
@@ -41,7 +46,7 @@ public class Signup extends Controller {
 
     public static Result unverified() {
         com.feth.play.module.pa.controllers.Authenticate.noCache(response());
-        return ok(unverified.render());
+        return ok(views.html.account.unverified.render());
     }
     private static final Form<MyIdentity> FORGOT_PASSWORD_FORM = form(MyIdentity.class);
 
