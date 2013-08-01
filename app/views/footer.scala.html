@@ -1,31 +1,16 @@
-    <div id="myModal" class="modal hide fade">
-        <div class="modal-header">
-            <button class="close" data-dismiss="modal">&times;</button>
-            <h3>This is a Modal</h3>
-        </div>
-        <div class="modal-body">
-            <p>Bootstrap depends on jQuery.  So when you specify Bootstrap as a dependency you get jQuery too.</p>
-        </div>
-        <div class="modal-footer">
-            <a href="#" class="btn" data-dismiss="modal">Close</a>
-        </div>
-    </div>
-
+	<hr>
+	
+	<footer>
+        <p class="text-center"><small>&copy; 2013 by MyCompany</small></p>
+    </footer>
+      
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
     <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap/2.3.1/js/bootstrap.min.js"))'></script>
     
     <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/bootstrap-datepicker.js"))'></script>
     <!--<script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/locales/bootstrap-datepicker.de.js"))'></script>-->
     <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("js/bootstrap-timepicker.min.js"))'></script>
     
-    <script type="text/javascript">
-        $(function() {
-            $("#showModalButton").bind('click', function(event) {
-                $('#myModal').modal()
-            })
-        })
-    </script>
     

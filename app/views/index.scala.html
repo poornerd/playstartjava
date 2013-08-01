@@ -2,27 +2,49 @@
 
 @import com.feth.play.module.pa.views.html._ 
 
-@main("Welcome to Play 2.1") {
+@main("Welcome to My App", "index") {
     
-    <div>
-        Login Providers: 
-    @forProviders() { p =>
-        <a href="@p.getUrl()">@p.getKey()</a>
-    }
-    </div>
-    
-    @currentAuth() { auth =>
-        @if(auth != null) {
-            You are logged in with provider '@auth.getProvider()' and the user ID '@auth.getId()'.
-            <a href="@com.feth.play.module.pa.controllers.routes.Authenticate.logout">Logout</a>
-        } else {
-            You are not logged in.
-        }
-    }
+<div class="hero-unit">
+	<h1>Welcome to my App!</h1>
+	This may serve as an entry point for building your own Play! Webapp, based on Play authentication, WebJars and twitter bootstrap.
+</div>
 
-       <div class="container-fluid">
-        <button id="showModalButton" class="btn btn-primary btn-large"><i class="icon-exclamation-sign icon-white"></i> Show a Modal</button>
-       </div>
-    
-    
+<div class="row">
+	<div class="span8">
+		<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+		sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem 
+		ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore 
+		magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea 
+		takimata sanctus est Lorem ipsum dolor sit amet.</p>
+	</div>
+	<div class="span4">
+		<div class="well">
+			<h2>Items</h2>
+			<p>Open a modal window here: </p>
+			<p><a id="showModalButton" class="btn btn-primary"><i class="icon-exclamation-sign icon-white"></i> Show a Modal</a></p>
+		</div>
+	</div>
+</div>
+        
+<div id="myModal" class="modal hide fade">
+    <div class="modal-header">
+        <small>Modal Window</small><a class="close" data-dismiss="modal">&times;</a>
+    </div>
+    <div class="modal-body">
+        <h3>This is a Modal</h3>
+        <p>Bootstrap depends on jQuery. So when you specify Bootstrap as a dependency you get jQuery too.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function() {
+        $("#showModalButton").bind('click', function(event) {
+            $('#myModal').modal()
+        })
+    })
+</script>
+
 }

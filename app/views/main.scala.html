@@ -1,12 +1,22 @@
-@(title: String)(content: Html)
+@(title: String, nav: String = "")(content: Html)
 
 <!DOCTYPE html>
 <html>
     @head(title)
 <body>
     <div class="container">
-    @menu()
+    @menu(nav)
 
+    @if(flash.contains(Application.FLASH_ERROR_KEY)) {
+      <div class="alert alert-error">
+      	@flash().get(Application.FLASH_ERROR_KEY)
+      </div>
+    }
+    @if(flash.contains(Application.FLASH_MESSAGE_KEY)) {
+      <div class="alert alert-success">
+      	@flash().get(Application.FLASH_MESSAGE_KEY)
+      </div>
+    }
     @content
     
     @footer()
