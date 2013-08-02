@@ -1,9 +1,9 @@
-@(verificationUrl: String, token: String, name: String, email: String)Hey @name, 
+@(verificationUrl: String, token: String, name: String, email: String)Hallo @name, 
 
 
-um deine E-Mail-Adresse zu bestätigen, folge einfach diesem Link:
+um Ihre E-Mail-Adresse zu bestätigen, folgen Sie bitte einfach diesem Link:
 
 @verificationUrl
 
-Grüße,
-Das PlayAuthenticate-Team
+Mit freundlichen Grüßen,
+MyCompany
