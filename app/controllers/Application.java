@@ -1,5 +1,6 @@
 package controllers;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import play.*;
@@ -102,6 +103,7 @@ public class Application extends Controller {
     }
 
     public static String formatTimestamp(final long t) {
-        return new SimpleDateFormat("yyyy-dd-MM HH:mm:ss").format(new Date(t));
+    	DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, play.i18n.Lang.defaultLang().toLocale());
+        return df.format(new Date(t));
     }
 }

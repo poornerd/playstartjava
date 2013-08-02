@@ -36,6 +36,7 @@
                     <li class="@("active".when(nav == "index"))"><a href="@routes.Application.index()">Home</a></li>
                     <li class="@("active".when(nav == "about"))"><a href="#about">About</a></li>
                     <li class="@("active".when(nav == "contact"))"><a href="#contact">Contact</a></li>
+                    <li class="@("active".when(nav == "restricted"))"><a href="@routes.Application.restricted()">@Messages("playauthenticate.navigation.restricted")</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
