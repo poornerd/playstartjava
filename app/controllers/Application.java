@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import play.*;
 import play.data.Form;
+import play.i18n.Lang;
 import play.mvc.*;
 import static play.mvc.Controller.ctx;
 import static play.mvc.Controller.response;
@@ -103,7 +104,9 @@ public class Application extends Controller {
     }
 
     public static String formatTimestamp(final long t) {
-    	DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, play.i18n.Lang.defaultLang().toLocale());
-        return df.format(new Date(t));
+    	java.util.Locale locale = Lang.preferred(ctx().request().acceptLanguages()).toLocale();
+    	DateFormat df = DateFormat.getDateInstance(DateFormat.LONG, locale);
+    	DateFormat tf = DateFormat.getTimeInstance(DateFormat.MEDIUM, locale);
+        return df.format(new Date(t)) + " " + tf.format(new Date(t));
     }
 }

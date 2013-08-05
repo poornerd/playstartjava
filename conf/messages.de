@@ -125,13 +125,13 @@ playauthenticate.handler.loginfirst=Sie müssen sich zuerst anmelden, um ''{0}''
 
 # play-authenticate: Profile
 playauthenticate.profile.title=Benutzerprofil
-playauthenticate.profile.mail=Ihr Name lautet {0} und Ihre E-Mail-Adresse ist {1}!
+playauthenticate.profile.mail=Ihr Name lautet {0} und Ihre E-Mail-Adresse ist {1}
 playauthenticate.profile.unverified=unverifiziert - Klicken Sie, um zu bestätigen
 playauthenticate.profile.verified=verifiziert
 playauthenticate.profile.providers_many=Es sind {0} Konten mit Ihrem Benutzer verknüpft:
 playauthenticate.profile.providers_one=Es ist ein Konto mit Ihrem Benutzer verknüpft:
 playauthenticate.profile.logged=Sie sind momentan eingeloggt mit:
-playauthenticate.profile.session=Ihre Benutzer-Identifikation ist {0} und Ihre Sitzung läuft {1} ab
+playauthenticate.profile.session=Ihre Benutzer-Identifikation ist {0} und Ihre Sitzung läuft am {1} ab
 playauthenticate.profile.session_endless=Ihre Benutzer-Identifikation ist {0} und Ihre Sitzung läuft nie ab
 playauthenticate.profile.password_change=Ändern/setzen Sie ein Passwort für Ihren Benutzer
 
