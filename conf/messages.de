@@ -25,6 +25,8 @@ error.maxLength=Die maximale Länge beträgt {0}
 error.email=Gültige E-Mail-Adresse erforderlich
 error.pattern=Muss dem Muster {0} entsprechen
 
+error.invalidData=Bitte überprüfen Sie Ihre Eingaben!
+
 ### --- play-authenticate START
 
 playauthenticate.accounts.link.success=Das Konto wurde erfolgreich verknüpft.

@@ -72,7 +72,7 @@ public class Application extends Controller {
                 .bindFromRequest();
         if (filledForm.hasErrors()) {
             // User did not fill everything properly
-        	flash(Application.FLASH_ERROR_KEY, toErrorString(filledForm.errors()));
+        	flash(Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
             return badRequest(login.render(filledForm));
         } else {
             // Everything was filled
@@ -97,7 +97,8 @@ public class Application extends Controller {
                 .bindFromRequest();
         if (filledForm.hasErrors()) {
             // User did not fill everything properly
-        	flash(Application.FLASH_ERROR_KEY, toErrorString(filledForm.errors()));
+        	//flash(Application.FLASH_ERROR_KEY, toErrorString(filledForm.errors(), "playauthenticate.signup"));
+        	flash(Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
             return badRequest(signup.render(filledForm));
         } else {
             // Everything was filled
@@ -107,7 +108,13 @@ public class Application extends Controller {
         }
     }
     
-    protected static String toErrorString(java.util.Map<String, java.util.List<ValidationError>> errorMap) {
+    /**
+     * 
+     * @param errorMap
+     * @param fieldDomain the prefix in messages file for translation of fieldNames. Without a dot at the end. Example: "playauthenticate.signup" 
+     * @return
+     */
+    protected static String toErrorString(java.util.Map<String, java.util.List<ValidationError>> errorMap, String fieldPrefix) {
     	StringBuffer sb = new StringBuffer();
     	String key = null;
     	String msg = null;
@@ -116,7 +123,7 @@ public class Application extends Controller {
     		if (sb.length() > 0) {
         		sb.append("\n");
     		}
-    		sb.append(key);
+    		sb.append(Messages.get(fieldPrefix + "." + key));
     		sb.append(": ");
     		for (java.util.Iterator<ValidationError> errIt = errorMap.get(key).iterator(); errIt.hasNext();) {
 	    		sb.append(Messages.get(errIt.next().message()));

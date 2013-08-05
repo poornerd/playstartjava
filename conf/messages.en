@@ -25,6 +25,8 @@ error.maxLength=Maximum length is {0}
 error.email=Valid email required
 error.pattern=Must satisfy {0}
 
+error.invalidData=Invalid data.
+
 ### --- play-authenticate START
 
 # play-authenticate: Initial translations
@@ -56,7 +58,9 @@ playauthenticate.password.reset_email.subject=PlayAuthenticate: How to reset you
 # play-authenticate: Additional translations
 
 playauthenticate.login.email.placeholder=Your e-mail address
+playauthenticate.login.email=Email
 playauthenticate.login.password.placeholder=Choose a password
+playauthenticate.login.password=Password
 playauthenticate.login.password.repeat=Repeat chosen password
 playauthenticate.login.title=Login
 playauthenticate.login.password.placeholder=Password
