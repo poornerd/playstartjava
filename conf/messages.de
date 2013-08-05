@@ -65,6 +65,8 @@ playauthenticate.login.oauth=Oder melden Sie sich mit einem der folgenden Dienst
 playauthenticate.signup.noAccountYet=Sie haben noch keinen Account?
 playauthenticate.signup.title=Registrierung
 playauthenticate.signup.name=Ihr Name
+playauthenticate.signup.firstName=Vorname
+playauthenticate.signup.lastName=Nachname
 playauthenticate.signup.now=Jetzt registrieren
 playauthenticate.signup.oauth=oder registrieren Sie sich mit einem der folgenden Dienste:
 

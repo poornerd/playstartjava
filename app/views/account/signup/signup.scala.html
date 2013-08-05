@@ -25,8 +25,12 @@
             }
             
              @inputText(
-                signupForm("name"),
-                '_label -> Messages("playauthenticate.signup.name")
+                signupForm("firstName"),
+                '_label -> Messages("playauthenticate.signup.firstName")
+             )
+             @inputText(
+                signupForm("lastName"),
+                '_label -> Messages("playauthenticate.signup.lastName")
              )
              
              @account._emailPartial(signupForm)

@@ -67,6 +67,8 @@ playauthenticate.login.oauth=or log in using one of the following providers:
 playauthenticate.signup.noAccountYet=You do not have an account yet?
 playauthenticate.signup.title=Signup
 playauthenticate.signup.name=Your name
+playauthenticate.signup.firstName=First Name
+playauthenticate.signup.lastName=Last Name
 playauthenticate.signup.now=Sign up now
 playauthenticate.signup.oauth=or sign up using one of the following providers:
 

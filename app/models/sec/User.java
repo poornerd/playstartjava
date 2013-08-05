@@ -237,4 +237,19 @@ public class User extends Model implements Subject {
         this.changePassword(authUser, create);
         TokenAction.deleteByUser(this, Type.PASSWORD_RESET);
     }
+    
+    public String getFullName() {
+    	StringBuffer sb = new StringBuffer();
+    	if (this.firstName != null) {
+    		sb.append(this.firstName);
+    		sb.append(" ");
+    	}
+    	if (this.lastName != null) {
+    		sb.append(this.lastName);
+    	}
+    	if (sb.length() == 0 && this.name != null) {
+    		sb.append(this.name);
+    	}
+    	return sb.toString();
+    }
 }

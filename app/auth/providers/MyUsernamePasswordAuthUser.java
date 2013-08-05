@@ -14,11 +14,13 @@ public class MyUsernamePasswordAuthUser extends UsernamePasswordAuthUser
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private final String name;
+	private final String firstName;
+	private final String lastName;
 
 	public MyUsernamePasswordAuthUser(final MySignup signup) {
 		super(signup.password, signup.email);
-		this.name = signup.name;
+		this.firstName = signup.firstName;
+		this.lastName = signup.lastName;
 	}
 
 	/**
@@ -27,11 +29,20 @@ public class MyUsernamePasswordAuthUser extends UsernamePasswordAuthUser
 	 */
 	public MyUsernamePasswordAuthUser(final String password) {
 		super(password, null);
-		name = null;
+		lastName = null;
+		firstName = null;
 	}
 
 	@Override
 	public String getName() {
-		return name;
+		StringBuffer sb = new StringBuffer();
+		if (firstName != null) {
+			sb.append(firstName);
+			sb.append(" ");
+		}
+		if (lastName != null) {
+			sb.append(lastName);
+		}
+		return sb.toString();
 	}
 }

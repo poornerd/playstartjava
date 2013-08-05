@@ -6,7 +6,7 @@
     
     <h1>@Messages("playauthenticate.profile.title")</h1>
     <p>
-    @Messages("playauthenticate.profile.mail", localUser.name, localUser.email)
+    @Messages("playauthenticate.profile.mail", localUser.getFullName(), localUser.email)
 	    <i>
 	    @if(!localUser.emailValidated && localUser.email) {
 	      (<a href="@controllers.sec.routes.Account.verifyEmail">@Messages("playauthenticate.profile.unverified")</a>).

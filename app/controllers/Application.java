@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import play.*;
 import play.data.Form;
+import play.data.validation.ValidationError;
 import play.i18n.Lang;
+import play.i18n.Messages;
 import play.mvc.*;
 import static play.mvc.Controller.ctx;
 import static play.mvc.Controller.response;
@@ -70,6 +72,7 @@ public class Application extends Controller {
                 .bindFromRequest();
         if (filledForm.hasErrors()) {
             // User did not fill everything properly
+        	flash(Application.FLASH_ERROR_KEY, toErrorString(filledForm.errors()));
             return badRequest(login.render(filledForm));
         } else {
             // Everything was filled
@@ -94,6 +97,7 @@ public class Application extends Controller {
                 .bindFromRequest();
         if (filledForm.hasErrors()) {
             // User did not fill everything properly
+        	flash(Application.FLASH_ERROR_KEY, toErrorString(filledForm.errors()));
             return badRequest(signup.render(filledForm));
         } else {
             // Everything was filled
@@ -101,6 +105,25 @@ public class Application extends Controller {
             // signup
             return UsernamePasswordAuthProvider.handleSignup(ctx());
         }
+    }
+    
+    protected static String toErrorString(java.util.Map<String, java.util.List<ValidationError>> errorMap) {
+    	StringBuffer sb = new StringBuffer();
+    	String key = null;
+    	String msg = null;
+    	for (java.util.Iterator<String> it = errorMap.keySet().iterator(); it.hasNext();) {
+    		key = it.next();
+    		if (sb.length() > 0) {
+        		sb.append("\n");
+    		}
+    		sb.append(key);
+    		sb.append(": ");
+    		for (java.util.Iterator<ValidationError> errIt = errorMap.get(key).iterator(); errIt.hasNext();) {
+	    		sb.append(Messages.get(errIt.next().message()));
+	    		sb.append("\n");
+    		}
+    	}
+    	return sb.toString();
     }
 
     public static String formatTimestamp(final long t) {

@@ -97,7 +97,8 @@ public class MyUsernamePasswordAuthProvider
 		public String repeatPassword;
 
 		@Required
-		public String name;
+		public String lastName;
+		public String firstName;
 
 		public String validate() {
 			if (password == null || !password.equals(repeatPassword)) {
@@ -282,10 +283,10 @@ public class MyUsernamePasswordAuthProvider
 
 		final String html = getEmailTemplate(
 				"views.html.account.email.password_reset", langCode, url,
-				token, user.name, user.email);
+				token, user.getFullName(), user.email);
 		final String text = getEmailTemplate(
 				"views.txt.account.email.password_reset", langCode, url, token,
-				user.name, user.email);
+				user.getFullName(), user.email);
 
 		return new Body(text, html);
 	}
@@ -363,10 +364,10 @@ public class MyUsernamePasswordAuthProvider
 
 		final String html = getEmailTemplate(
 				"views.html.account.email.verify_email", langCode, url, token,
-				user.name, user.email);
+				user.getFullName(), user.email);
 		final String text = getEmailTemplate(
 				"views.txt.account.email.verify_email", langCode, url, token,
-				user.name, user.email);
+				user.getFullName(), user.email);
 
 		return new Body(text, html);
 	}
@@ -382,6 +383,6 @@ public class MyUsernamePasswordAuthProvider
 	}
 
 	private String getEmailName(final User user) {
-		return getEmailName(user.email, user.name);
+		return getEmailName(user.email, user.getFullName());
 	}
 }
