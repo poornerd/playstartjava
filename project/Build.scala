@@ -20,6 +20,7 @@ object ApplicationBuild extends Build {
     "com.feth"     %%  "play-authenticate" % "0.3.0-SNAPSHOT",
     "com.typesafe" %% "play-plugins-mailer" % "2.1-RC2",
     "postgresql"    %   "postgresql"        % "9.1-901-1.jdbc4",
+    "com.unboundid" % "unboundid-ldapsdk" % "2.3.4",
     javaCore,
     javaJdbc,
     javaEbean
