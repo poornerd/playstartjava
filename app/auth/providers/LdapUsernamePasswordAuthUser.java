@@ -1,9 +1,9 @@
 package auth.providers;
 
 import com.feth.play.module.pa.providers.password.DefaultUsernamePasswordAuthUser;
+import com.feth.play.module.pa.user.FirstLastNameIdentity;
 
-public class LdapUsernamePasswordAuthUser extends
-		DefaultUsernamePasswordAuthUser {
+public class LdapUsernamePasswordAuthUser extends DefaultUsernamePasswordAuthUser implements FirstLastNameIdentity {
 
 	/**
 	 * must implement this field:
@@ -35,4 +35,19 @@ public class LdapUsernamePasswordAuthUser extends
 	public String lastName = null;
 	public String fullName = null;
 	public String contactEmail = null; // ** we must not name it "email" because that property is already used as username in superclass UsernamePasswordAuthUser **
+
+	@Override
+	public String getName() {
+		return fullName;
+	}
+
+	@Override
+	public String getFirstName() {
+		return firstName;
+	}
+
+	@Override
+	public String getLastName() {
+		return lastName;
+	}
 }

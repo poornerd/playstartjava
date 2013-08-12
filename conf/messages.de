@@ -57,6 +57,8 @@ playauthenticate.password.reset_email.subject=PlayAuthenticate: Anleitung zum Pa
 
 playauthenticate.login.email.placeholder=Ihre E-Mail-Adresse
 playauthenticate.login.password.placeholder=Wählen Sie ein Passwort
+playauthenticate.login.username.placeholder=Ihr Benutzername
+playauthenticate.login.username=Benutzername
 playauthenticate.login.password.repeat=Wiederholen Sie das gewählte Passwort
 playauthenticate.login.title=Anmeldung
 playauthenticate.login.password.placeholder=Passwort

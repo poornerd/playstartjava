@@ -36,7 +36,7 @@ public class User extends Model implements Subject {
     private static final long serialVersionUID = 1L;
     @Id
     public Long id;
-    @Email
+
     // if you make this unique, keep in mind that users *must* merge/link their
     // accounts then on signup with additional providers
     // @Column(unique = true)
@@ -160,6 +160,9 @@ public class User extends Model implements Subject {
             }
             if (lastName != null) {
                 user.lastName = lastName;
+            }
+            if (user.name == null) {
+            	user.name = user.getFullName();
             }
         }
 

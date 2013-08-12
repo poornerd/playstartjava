@@ -19,6 +19,9 @@ import views.html.*;
 import views.html.account.*;
 import views.html.account.signup.*;
 
+import auth.providers.LdapUsernamePasswordAuthProvider;
+import auth.providers.LdapUsernamePasswordAuthProvider.LdapLogin;
+import auth.providers.LdapUsernamePasswordAuthUser;
 import auth.providers.MyUsernamePasswordAuthProvider;
 import auth.providers.MyUsernamePasswordAuthProvider.MyLogin;
 import auth.providers.MyUsernamePasswordAuthProvider.MySignup;
@@ -77,6 +80,23 @@ public class Application extends Controller {
         } else {
             // Everything was filled
             return UsernamePasswordAuthProvider.handleLogin(ctx());
+        }
+    }
+    
+    public static Result ldapLogin() {
+        return ok(ldaplogin.render(LdapUsernamePasswordAuthProvider.getLoginForm()));
+    }
+
+    public static Result doLdapLogin() {
+        com.feth.play.module.pa.controllers.Authenticate.noCache(response());
+        final Form<LdapLogin> filledForm = LdapUsernamePasswordAuthProvider.getLoginForm().bindFromRequest();
+        if (filledForm.hasErrors()) {
+            // User did not fill everything properly
+        	flash(Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
+            return badRequest(ldaplogin.render(filledForm));
+        } else {
+            // Everything was filled
+            return LdapUsernamePasswordAuthProvider.handleLogin(ctx());
         }
     }
 

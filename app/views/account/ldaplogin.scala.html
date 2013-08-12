@@ -1,0 +1,47 @@
+@(loginForm: Form[_])
+
+@import helper._
+@import helper.twitterBootstrap._
+@import be.objectify.deadbolt.java.views.html._
+@import be.objectify.deadbolt.core.utils.TemplateUtils._
+@import com.feth.play.module.pa.providers.AuthProvider.Registry
+
+@main(Messages("playauthenticate.login.title")) {
+
+  <div class="row">
+    <div class="span12">
+      <h1>LDAP - @Messages("playauthenticate.login.title")</h1>
+    </div>
+  </div>
+    
+  <div id="login" class="row">
+
+    <div class="span12">
+      @* Display proprietary login form *@
+    	@helper.form(routes.Application.doLdapLogin) {
+    	
+        @if(loginForm.hasGlobalErrors) { 
+          <p class="error">
+            <span class="label label-important">@loginForm.globalError.message</span>
+          </p>
+        }
+        
+        @inputText(
+          loginForm("username"),
+          '_showConstraints -> false,
+          '_label -> Messages("playauthenticate.login.username.placeholder")
+        )
+          
+        @inputPassword(
+          loginForm("password"),
+          '_showConstraints -> false,
+          '_label -> Messages("playauthenticate.login.password.placeholder")
+        )
+          
+        <input type="submit" value="@Messages("playauthenticate.login.now")" class="btn btn-primary"><br/>
+    	}
+    </div>
+
+  </div>
+
+}

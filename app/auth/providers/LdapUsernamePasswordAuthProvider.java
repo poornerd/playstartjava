@@ -14,12 +14,13 @@ import play.data.validation.Constraints.MinLength;
 import play.data.validation.Constraints.Required;
 import play.i18n.Messages;
 import play.mvc.Call;
+import play.mvc.Http;
 import play.mvc.Http.Context;
+import play.mvc.Result;
 
-import com.feth.play.module.mail.Mailer.Mail.Body;
 import com.feth.play.module.pa.PlayAuthenticate;
 import com.feth.play.module.pa.exceptions.AuthException;
-import com.feth.play.module.pa.providers.password.UsernamePasswordAuthProvider;
+import com.feth.play.module.pa.providers.AuthProvider;
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
 
 import com.unboundid.ldap.sdk.LDAPConnection;
@@ -29,9 +30,9 @@ import com.unboundid.ldap.sdk.SearchResult;
 import com.unboundid.ldap.sdk.SearchResultEntry;
 import com.unboundid.ldap.sdk.SearchScope;
 
-public class LdapUsernamePasswordAuthProvider
-		extends
-		UsernamePasswordAuthProvider<String, LdapUsernamePasswordAuthUser, LdapUsernamePasswordAuthUser, LdapUsernamePasswordAuthProvider.LdapLogin, LdapUsernamePasswordAuthProvider.LdapLogin> {
+import controllers.routes;
+
+public class LdapUsernamePasswordAuthProvider extends AuthProvider {
 
 	public static final String LDAP_PROVIDER_KEY = "ldap";
 	
@@ -49,6 +50,10 @@ public class LdapUsernamePasswordAuthProvider
 
 	private enum Case {
 		LOGIN
+	}
+	
+	protected enum LoginResult {
+		USER_LOGGED_IN, NOT_FOUND, WRONG_PASSWORD
 	}
 	
 	@Override
@@ -73,7 +78,16 @@ public class LdapUsernamePasswordAuthProvider
 	public String getKey() {
 		return LDAP_PROVIDER_KEY;
 	}
-
+	
+	@Override
+	public void onStart() {
+		Logger.info("Starting LDAP authentication plugin...");
+		super.onStart();
+		for (java.util.Iterator<AuthProvider> it = Registry.getProviders().iterator(); it.hasNext();) {
+			Logger.info("Registered provider: " + it.next().getKey());
+		}
+	}
+	
 	public static class LdapIdentity {
 
 		public LdapIdentity() {
@@ -88,33 +102,18 @@ public class LdapUsernamePasswordAuthProvider
 
 	}
 
-	public static class LdapLogin extends LdapIdentity
-			implements
-			com.feth.play.module.pa.providers.password.UsernamePasswordAuthProvider.UsernamePassword {
-
+	public static class LdapLogin {
 		@Required
-		@MinLength(3)
-		public String password;
-
-		/**
-		 * the interface requires a method <code>getEmail()</code> though it's not said that the username IS an email address
-		 */
-		@Override
-		public String getEmail() {
-			return getUsername();
-		}
+		public String username;
 		
-		public String getUsername() {
-			return username;
-		}
-
-		@Override
-		public String getPassword() {
-			return password;
-		}
+		@Required
+		public String password;
+		
 	}
 
-	public static final Form<LdapLogin> LOGIN_FORM = form(LdapLogin.class);
+	public static Form<LdapLogin> getLoginForm() {
+		return form(LdapLogin.class);
+	}
 
 	public LdapUsernamePasswordAuthProvider(Application app) {
 		super(app);
@@ -123,16 +122,7 @@ public class LdapUsernamePasswordAuthProvider
 	protected Form<LdapLogin> getSignupForm() {
 		return null;
 	}
-
-	protected Form<LdapLogin> getLoginForm() {
-		return LOGIN_FORM;
-	}
-
-	@Override
-	protected com.feth.play.module.pa.providers.password.UsernamePasswordAuthProvider.SignupResult signupUser(final LdapUsernamePasswordAuthUser user) {
-		return null;
-	}
-
+	
 	private LDAPConnection getLDAPConnection() throws LDAPException {
 		String ldapHost = getConfiguration().getString(SETTING_KEY_LDAP_HOST);
 		int ldapPort = getConfiguration().getInt(SETTING_KEY_LDAP_PORT);
@@ -145,10 +135,7 @@ public class LdapUsernamePasswordAuthProvider
 		return new LDAPConnection(ldapHost, ldapPort);
 	}
 
-	@Override
-	protected com.feth.play.module.pa.providers.password.UsernamePasswordAuthProvider.LoginResult loginUser(
-			final LdapUsernamePasswordAuthUser authUser) {
-
+	protected LoginResult loginUser(final LdapUsernamePasswordAuthUser authUser) {
 		try {
 			SearchResultEntry userEntry = findLdapUserEntry(authUser, true);
 			if (userEntry != null) {
@@ -239,32 +226,42 @@ public class LdapUsernamePasswordAuthProvider
 			throws AuthException {
 
 		if (payload == Case.LOGIN) {
-			return super.authenticate(context, payload);
+			final LdapLogin login = getLogin(context);
+			final LdapUsernamePasswordAuthUser authUser = buildLoginAuthUser(login, context);
+			final LoginResult r = loginUser(authUser);
+			switch (r) {
+			case USER_LOGGED_IN:
+				// The user exists and the given password was correct
+				// ** fill the data of the user **
+				receiveUserDataFromLdap(authUser);
+				return authUser;
+			case WRONG_PASSWORD:
+				// don't expose this - it might harm users privacy if anyone
+				// knows they signed up for our service
+			case NOT_FOUND:
+				// forward to login page
+				return onLoginUserNotFound(context);
+			default:
+				throw new AuthException("Something in login went wrong");
+			}
 		} else {
-			throw new AuthException("LDAP authentication does not support signup.");
+			return PlayAuthenticate.getResolver().login().url();
 		}
 	}
 	
-	@Override
-	protected Call userExists(final UsernamePasswordAuthUser authUser) {
-		return controllers.sec.routes.Signup.exists();
+	public static Result handleLogin(final Context ctx) {
+		return PlayAuthenticate.handleAuthentication(LDAP_PROVIDER_KEY, ctx, Case.LOGIN);
 	}
-
-	@Override
-	protected Call userUnverified(final UsernamePasswordAuthUser authUser) {
-		return controllers.sec.routes.Signup.unverified();
+	
+	private LdapLogin getLogin(final Context ctx) {
+		// TODO change to getSignupForm().bindFromRequest(request) after 2.1
+		Http.Context.current.set(ctx);
+		final Form<LdapLogin> filledForm = getLoginForm().bindFromRequest();
+		return filledForm.get();
 	}
-
-	@Override
-	protected LdapUsernamePasswordAuthUser buildSignupAuthUser(
-			final LdapLogin signup, final Context ctx) {
-		return null;
-	} 
-
-	@Override
-	protected LdapUsernamePasswordAuthUser buildLoginAuthUser(
-			final LdapLogin login, final Context ctx) {
-		return new LdapUsernamePasswordAuthUser(login.getPassword(), login.getUsername());
+	
+	protected LdapUsernamePasswordAuthUser buildLoginAuthUser(final LdapLogin login, final Context ctx) {
+		return new LdapUsernamePasswordAuthUser(login.password, login.username);
 	}
 	
 	/**
@@ -274,37 +271,27 @@ public class LdapUsernamePasswordAuthProvider
 	* @param context
 	* @return
 	*/
-	@Override
 	protected LdapUsernamePasswordAuthUser transformAuthUser(final LdapUsernamePasswordAuthUser authUser, final Context context) {
 		return new LdapUsernamePasswordAuthUser(null, authUser.getUsername());
 	}
 
-	@Override
-	protected String getVerifyEmailMailingSubject(
-			final LdapUsernamePasswordAuthUser user, final Context ctx) {
-		return null;
-	}
-
-	@Override
 	protected String onLoginUserNotFound(final Context context) {
 		context.flash()
 				.put(controllers.Application.FLASH_ERROR_KEY,
 						Messages.get("playauthenticate.password.login.unknown_user_or_pw"));
-		return super.onLoginUserNotFound(context);
+		return PlayAuthenticate.getResolver().login().url();
 	}
 
+	/**
+	 * only external providers are shown in the scala template forProviders
+	 */
+	@Override
+	public boolean isExternal() {
+		return true;
+	}
 
 	@Override
-	protected Body getVerifyEmailMailingBody(final String token,
-			final LdapUsernamePasswordAuthUser user, final Context ctx) {
-
-		return null;
+	public String getUrl() {
+		return routes.Application.ldapLogin().url();
 	}
-
-	@Override
-	protected String generateVerificationRecord(
-			final LdapUsernamePasswordAuthUser user) {
-		return null;
-	}
-
 }

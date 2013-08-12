@@ -51,7 +51,7 @@
         @defining(Registry.getProviders()) { providers =>
             @if(providers != null && providers.size() > 0) {
             <div class="row">
-                @Messages("playauthenticate.login.oauth")
+                @Messages("playauthenticate.login.oauth")                
                 @* Display list of available providers *@
                 @_providerPartial(skipCurrent=false)
             </div>
