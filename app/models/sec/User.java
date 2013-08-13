@@ -1,5 +1,6 @@
 package models.sec;
 
+import auth.providers.LdapUsernamePasswordAuthUser;
 import be.objectify.deadbolt.core.models.Permission;
 import be.objectify.deadbolt.core.models.Role;
 import be.objectify.deadbolt.core.models.Subject;
@@ -195,8 +196,10 @@ public class User extends Model implements Subject {
 
     public static void setLastLoginDate(final AuthUser knownUser) {
         final User u = User.findByAuthUserIdentity(knownUser);
-        u.lastLogin = new Date();
-        u.save();
+        if (u != null) {
+        	u.lastLogin = new Date();
+        	u.save();
+        }
     }
 
     public static User findByEmail(final String email) {

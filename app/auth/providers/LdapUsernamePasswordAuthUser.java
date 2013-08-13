@@ -1,9 +1,8 @@
 package auth.providers;
 
-import com.feth.play.module.pa.providers.password.DefaultUsernamePasswordAuthUser;
 import com.feth.play.module.pa.user.FirstLastNameIdentity;
 
-public class LdapUsernamePasswordAuthUser extends DefaultUsernamePasswordAuthUser implements FirstLastNameIdentity {
+public class LdapUsernamePasswordAuthUser implements FirstLastNameIdentity {
 
 	/**
 	 * must implement this field:
@@ -18,18 +17,21 @@ public class LdapUsernamePasswordAuthUser extends DefaultUsernamePasswordAuthUse
 	private long expiration;
 
 	public LdapUsernamePasswordAuthUser(String clearPassword, String username) {
-		super(clearPassword, username);
+		this.clearPassword = clearPassword;
+		this.username = username;
 		expiration = System.currentTimeMillis() + 1000 * SESSION_TIMEOUT;
 	}
 
 	public String getUsername() {
-		return super.getEmail();
+		return this.username;
 	}
 	
-	@Override
 	public long expires() {
 		return expiration;
 	}
+	
+	public String username = null;
+	public String clearPassword = null;
 	
 	public String firstName = null;
 	public String lastName = null;

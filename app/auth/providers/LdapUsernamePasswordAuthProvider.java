@@ -171,7 +171,7 @@ public class LdapUsernamePasswordAuthProvider extends AuthProvider {
 		if (withLogin) {
 			String ldapHost = getConfiguration().getString(SETTING_KEY_LDAP_HOST);
 			int ldapPort = getConfiguration().getInt(SETTING_KEY_LDAP_PORT);
-			ldap = new LDAPConnection(ldapHost, ldapPort, dn, authUser.getPassword());
+			ldap = new LDAPConnection(ldapHost, ldapPort, dn, authUser.clearPassword);
 			// ** if login with password fails, an LDAPException is thrown with resultCode == ResultCode.INVALID_CREDENTIALS **
 		}
 		return userEntry;			
