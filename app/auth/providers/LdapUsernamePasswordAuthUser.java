@@ -1,8 +1,9 @@
 package auth.providers;
 
+import com.feth.play.module.pa.user.AuthUser;
 import com.feth.play.module.pa.user.FirstLastNameIdentity;
 
-public class LdapUsernamePasswordAuthUser implements FirstLastNameIdentity {
+public class LdapUsernamePasswordAuthUser extends AuthUser implements FirstLastNameIdentity {
 
 	/**
 	 * must implement this field:
@@ -51,5 +52,15 @@ public class LdapUsernamePasswordAuthUser implements FirstLastNameIdentity {
 	@Override
 	public String getLastName() {
 		return lastName;
+	}
+
+	@Override
+	public String getId() {
+		return getUsername();
+	}
+
+	@Override
+	public String getProvider() {
+		return LdapUsernamePasswordAuthProvider.LDAP_PROVIDER_KEY;
 	}
 }
