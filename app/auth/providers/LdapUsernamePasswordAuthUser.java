@@ -1,9 +1,11 @@
 package auth.providers;
 
-import com.feth.play.module.pa.user.AuthUser;
+import com.feth.play.module.pa.user.EmailIdentity;
+import com.feth.play.module.pa.user.NameIdentity;
+import com.feth.play.module.pa.user.SessionAuthUser;
 import com.feth.play.module.pa.user.FirstLastNameIdentity;
 
-public class LdapUsernamePasswordAuthUser extends AuthUser implements FirstLastNameIdentity {
+public class LdapUsernamePasswordAuthUser extends SessionAuthUser implements FirstLastNameIdentity, EmailIdentity, NameIdentity {
 
 	/**
 	 * must implement this field:
@@ -15,30 +17,25 @@ public class LdapUsernamePasswordAuthUser extends AuthUser implements FirstLastN
 	 * Defaults to two weeks
 	 */
 	final static long SESSION_TIMEOUT = 24 * 14 * 3600;
-	private long expiration;
 
 	public LdapUsernamePasswordAuthUser(String clearPassword, String username) {
+		super(LdapUsernamePasswordAuthProvider.getProvider().getKey(), username, System.currentTimeMillis() + 1000 * SESSION_TIMEOUT);
 		this.clearPassword = clearPassword;
 		this.username = username;
-		expiration = System.currentTimeMillis() + 1000 * SESSION_TIMEOUT;
 	}
 
-	public String getUsername() {
-		return this.username;
-	}
-	
-	public long expires() {
-		return expiration;
-	}
-	
 	public String username = null;
 	public String clearPassword = null;
 	
 	public String firstName = null;
 	public String lastName = null;
 	public String fullName = null;
-	public String contactEmail = null; // ** we must not name it "email" because that property is already used as username in superclass UsernamePasswordAuthUser **
+	public String email = null; 
 
+	public String getUsername() {
+		return this.username;
+	}
+	
 	@Override
 	public String getName() {
 		return fullName;
@@ -55,12 +52,8 @@ public class LdapUsernamePasswordAuthUser extends AuthUser implements FirstLastN
 	}
 
 	@Override
-	public String getId() {
-		return getUsername();
+	public String getEmail() {
+		return email;
 	}
 
-	@Override
-	public String getProvider() {
-		return LdapUsernamePasswordAuthProvider.LDAP_PROVIDER_KEY;
-	}
 }

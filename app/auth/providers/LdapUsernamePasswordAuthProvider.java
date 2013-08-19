@@ -179,7 +179,7 @@ public class LdapUsernamePasswordAuthProvider extends AuthProvider {
 	
 	/**
 	 * retrieves some user data from LDAP and puts it into the bean itself. 
-	 * @param authUser the user that contains the username and will be filled with contactEmail, firstName, lastName, fullName
+	 * @param authUser the user that contains the username and will be filled with email, firstName, lastName, fullName
 	 */
 	public void receiveUserDataFromLdap(LdapUsernamePasswordAuthUser authUser) {
 		try {
@@ -204,7 +204,7 @@ public class LdapUsernamePasswordAuthProvider extends AuthProvider {
 					ldapLastname = userEntry.getAttributeValue(ldapUserLastnameAttr);
 				} 
 				if (ldapEmail != null) {
-					authUser.contactEmail = ldapEmail;
+					authUser.email = ldapEmail;
 				}
 				if (ldapFirstname != null) {
 					authUser.firstName = ldapFirstname;
