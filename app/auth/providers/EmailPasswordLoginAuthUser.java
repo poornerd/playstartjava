@@ -2,7 +2,7 @@ package auth.providers;
 
 import com.feth.play.module.pa.providers.password.DefaultUsernamePasswordAuthUser;
 
-public class MyLoginUsernamePasswordAuthUser extends
+public class EmailPasswordLoginAuthUser extends
 		DefaultUsernamePasswordAuthUser {
 
 	/**
@@ -21,11 +21,11 @@ public class MyLoginUsernamePasswordAuthUser extends
 	 * 
 	 * @param email
 	 */
-	public MyLoginUsernamePasswordAuthUser(final String email) {
+	public EmailPasswordLoginAuthUser(final String email) {
 		this(null, email);
 	}
 
-	public MyLoginUsernamePasswordAuthUser(final String clearPassword,
+	public EmailPasswordLoginAuthUser(final String clearPassword,
 			final String email) {
 		super(clearPassword, email);
 

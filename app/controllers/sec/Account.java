@@ -1,7 +1,7 @@
 package controllers.sec;
 
 import models.sec.User;
-import auth.providers.MyUsernamePasswordAuthProvider;
+import auth.providers.EmailPasswordAuthProvider;
 import be.objectify.deadbolt.java.actions.Restrict;
 import be.objectify.deadbolt.java.actions.Group;
 import be.objectify.deadbolt.java.actions.SubjectPresent;
@@ -19,7 +19,7 @@ import play.data.validation.Constraints.Required;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
-import auth.providers.MyUsernamePasswordAuthUser;
+import auth.providers.EmailPasswordAuthUser;
 import views.html.account.*;
 
 import static play.data.Form.form;
@@ -96,7 +96,7 @@ public class Account extends Controller {
             flash(Application.FLASH_MESSAGE_KEY, Messages.get(
                     "playauthenticate.verify_email.message.instructions_sent",
                     user.email));
-            MyUsernamePasswordAuthProvider.getProvider()
+            EmailPasswordAuthProvider.getProvider()
                     .sendVerifyEmailMailingAfterSignup(user, ctx());
         } else {
             flash(Application.FLASH_MESSAGE_KEY, Messages.get(
@@ -131,7 +131,7 @@ public class Account extends Controller {
         } else {
             final User user = Application.getLocalUser(session());
             final String newPassword = filledForm.get().password;
-            user.changePassword(new MyUsernamePasswordAuthUser(newPassword),
+            user.changePassword(new EmailPasswordAuthUser(newPassword),
                     true);
             flash(Application.FLASH_MESSAGE_KEY,
                     Messages.get("playauthenticate.change_password.success"));

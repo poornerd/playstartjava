@@ -2,12 +2,12 @@ package auth.providers;
 
 
 
-import auth.providers.MyUsernamePasswordAuthProvider.MySignup;
+import auth.providers.EmailPasswordAuthProvider.MySignup;
 
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
 import com.feth.play.module.pa.user.NameIdentity;
 
-public class MyUsernamePasswordAuthUser extends UsernamePasswordAuthUser
+public class EmailPasswordAuthUser extends UsernamePasswordAuthUser
 		implements NameIdentity {
 
 	/**
@@ -17,7 +17,7 @@ public class MyUsernamePasswordAuthUser extends UsernamePasswordAuthUser
 	private final String firstName;
 	private final String lastName;
 
-	public MyUsernamePasswordAuthUser(final MySignup signup) {
+	public EmailPasswordAuthUser(final MySignup signup) {
 		super(signup.password, signup.email);
 		this.firstName = signup.firstName;
 		this.lastName = signup.lastName;
@@ -27,7 +27,7 @@ public class MyUsernamePasswordAuthUser extends UsernamePasswordAuthUser
 	 * Used for password reset only - do not use this to signup a user!
 	 * @param password
 	 */
-	public MyUsernamePasswordAuthUser(final String password) {
+	public EmailPasswordAuthUser(final String password) {
 		super(password, null);
 		lastName = null;
 		firstName = null;

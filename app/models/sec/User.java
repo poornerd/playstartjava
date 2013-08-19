@@ -1,6 +1,7 @@
 package models.sec;
 
 import auth.providers.LdapUsernamePasswordAuthUser;
+import auth.providers.EmailPasswordAuthUser;
 import be.objectify.deadbolt.core.models.Permission;
 import be.objectify.deadbolt.core.models.Role;
 import be.objectify.deadbolt.core.models.Subject;
@@ -41,6 +42,7 @@ public class User extends Model implements Subject {
     // if you make this unique, keep in mind that users *must* merge/link their
     // accounts then on signup with additional providers
     // @Column(unique = true)
+    public String username;
     public String email;
     public String name;
     public String firstName;
@@ -208,6 +210,10 @@ public class User extends Model implements Subject {
 
     private static ExpressionList<User> getEmailUserFind(final String email) {
         return find.where().eq("active", true).eq("email", email);
+    }
+
+    private static ExpressionList<User> getUsernameFind(final String username) {
+        return find.where().eq("active", true).eq("username", username);
     }
 
     public LinkedAccount getAccountByProvider(final String providerKey) {

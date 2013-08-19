@@ -22,9 +22,9 @@ import views.html.account.signup.*;
 import auth.providers.LdapUsernamePasswordAuthProvider;
 import auth.providers.LdapUsernamePasswordAuthProvider.LdapLogin;
 import auth.providers.LdapUsernamePasswordAuthUser;
-import auth.providers.MyUsernamePasswordAuthProvider;
-import auth.providers.MyUsernamePasswordAuthProvider.MyLogin;
-import auth.providers.MyUsernamePasswordAuthProvider.MySignup;
+import auth.providers.EmailPasswordAuthProvider;
+import auth.providers.EmailPasswordAuthProvider.MyLogin;
+import auth.providers.EmailPasswordAuthProvider.MySignup;
 import be.objectify.deadbolt.java.actions.Group;
 import be.objectify.deadbolt.java.actions.Restrict;
 
@@ -66,12 +66,12 @@ public class Application extends Controller {
     }
 
     public static Result login() {
-        return ok(login.render(MyUsernamePasswordAuthProvider.LOGIN_FORM));
+        return ok(login.render(EmailPasswordAuthProvider.LOGIN_FORM));
     }
 
     public static Result doLogin() {
         com.feth.play.module.pa.controllers.Authenticate.noCache(response());
-        final Form<MyLogin> filledForm = MyUsernamePasswordAuthProvider.LOGIN_FORM
+        final Form<MyLogin> filledForm = EmailPasswordAuthProvider.LOGIN_FORM
                 .bindFromRequest();
         if (filledForm.hasErrors()) {
             // User did not fill everything properly
@@ -101,7 +101,7 @@ public class Application extends Controller {
     }
 
     public static Result signup() {
-        return ok(signup.render(MyUsernamePasswordAuthProvider.SIGNUP_FORM));
+        return ok(signup.render(EmailPasswordAuthProvider.SIGNUP_FORM));
     }
 
     public static Result jsRoutes() {
@@ -113,7 +113,7 @@ public class Application extends Controller {
 
     public static Result doSignup() {
         com.feth.play.module.pa.controllers.Authenticate.noCache(response());
-        final Form<MySignup> filledForm = MyUsernamePasswordAuthProvider.SIGNUP_FORM
+        final Form<MySignup> filledForm = EmailPasswordAuthProvider.SIGNUP_FORM
                 .bindFromRequest();
         if (filledForm.hasErrors()) {
             // User did not fill everything properly
