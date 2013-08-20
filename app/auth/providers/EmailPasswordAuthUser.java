@@ -13,7 +13,7 @@ public class EmailPasswordAuthUser extends UsernamePasswordAuthUser
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 	private final String firstName;
 	private final String lastName;
 

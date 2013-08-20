@@ -26,8 +26,12 @@
           </p>
         }
         
-        @_emailPartial(loginForm)
-          
+        @inputText(
+        	loginForm("username"),
+        	'_showConstraints -> true,
+        	'_label -> Messages("playauthenticate.login.username.placeholder")
+        )
+        
         @inputPassword(
           loginForm("password"),
           '_showConstraints -> false,

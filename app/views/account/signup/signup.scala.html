@@ -24,18 +24,23 @@
 		        </p>
             }
             
-             @inputText(
+            @inputText(
+                signupForm("username"),
+                '_showConstraints -> true,
+                '_label -> Messages("playauthenticate.signup.username")
+            )
+            @inputText(
                 signupForm("firstName"),
                 '_label -> Messages("playauthenticate.signup.firstName")
-             )
-             @inputText(
+            )
+            @inputText(
                 signupForm("lastName"),
                 '_label -> Messages("playauthenticate.signup.lastName")
-             )
+            )
              
-             @account._emailPartial(signupForm)
+            @account._emailPartial(signupForm)
              
-             @account._passwordPartial(signupForm)
+            @account._passwordPartial(signupForm)
 
             <input type="submit" value="@Messages("playauthenticate.signup.now")" class="btn btn-primary">
     	}

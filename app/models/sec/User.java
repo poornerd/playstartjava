@@ -2,12 +2,16 @@ package models.sec;
 
 import auth.providers.LdapUsernamePasswordAuthUser;
 import auth.providers.EmailPasswordAuthUser;
+import auth.providers.LocalUsernamePasswordAuthUser;
+import auth.providers.LocalUsernamePasswordLoginAuthUser;
 import be.objectify.deadbolt.core.models.Permission;
 import be.objectify.deadbolt.core.models.Role;
 import be.objectify.deadbolt.core.models.Subject;
 import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Expr;
 import com.avaje.ebean.ExpressionList;
 import com.avaje.ebean.validation.Email;
+import com.feth.play.module.pa.providers.password.DefaultUsernamePasswordAuthUser;
 import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
 import com.feth.play.module.pa.user.AuthUser;
 import com.feth.play.module.pa.user.AuthUserIdentity;
@@ -42,7 +46,6 @@ public class User extends Model implements Subject {
     // if you make this unique, keep in mind that users *must* merge/link their
     // accounts then on signup with additional providers
     // @Column(unique = true)
-    public String username;
     public String email;
     public String name;
     public String firstName;
@@ -111,8 +114,16 @@ public class User extends Model implements Subject {
 
     private static ExpressionList<User> getUsernamePasswordAuthUserFind(
             final UsernamePasswordAuthUser identity) {
-        return getEmailUserFind(identity.getEmail()).eq(
+    	if (identity instanceof NameIdentity) {
+    		return getUsernameFind(((NameIdentity)identity).getName()).eq(
                 "linkedAccounts.providerKey", identity.getProvider());
+    	} else if (identity instanceof EmailIdentity){
+    		return getEmailUserFind(identity.getEmail()).eq(
+                "linkedAccounts.providerKey", identity.getProvider());
+    	} else {
+    		return find.where().eq("active", true).or(Expr.eq("name", identity.getId()), Expr.eq("email", identity.getId())).eq(
+                    "linkedAccounts.providerKey", identity.getProvider());
+    	}
     }
 
     public void merge(final User otherUser) {
@@ -164,9 +175,6 @@ public class User extends Model implements Subject {
             if (lastName != null) {
                 user.lastName = lastName;
             }
-            if (user.name == null) {
-            	user.name = user.getFullName();
-            }
         }
 
         user.save();
@@ -213,7 +221,7 @@ public class User extends Model implements Subject {
     }
 
     private static ExpressionList<User> getUsernameFind(final String username) {
-        return find.where().eq("active", true).eq("username", username);
+        return find.where().eq("active", true).eq("name", username);
     }
 
     public LinkedAccount getAccountByProvider(final String providerKey) {
