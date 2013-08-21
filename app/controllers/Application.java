@@ -69,7 +69,7 @@ public class Application extends Controller {
     }
 
     public static Result doLogin() {
-        return LocalUserAuthProviderHelper.doLogin();
+        return LocalUserAuthProviderHelper.doLogin(true);
     }
     
     public static Result ldapLogin() {

@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import play.Application;
-import play.Configuration;
 import play.Logger;
 import play.data.Form;
-import play.data.validation.Constraints.MinLength;
 import play.data.validation.Constraints.Required;
 import play.i18n.Messages;
-import play.mvc.Call;
 import play.mvc.Http;
 import play.mvc.Http.Context;
 import play.mvc.Result;
@@ -21,8 +18,6 @@ import play.mvc.Result;
 import com.feth.play.module.pa.PlayAuthenticate;
 import com.feth.play.module.pa.exceptions.AuthException;
 import com.feth.play.module.pa.providers.AuthProvider;
-import com.feth.play.module.pa.providers.password.UsernamePasswordAuthUser;
-
 import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
 import com.unboundid.ldap.sdk.ResultCode;
@@ -77,15 +72,6 @@ public class LdapUsernamePasswordAuthProvider extends AuthProvider {
 	@Override
 	public String getKey() {
 		return LDAP_PROVIDER_KEY;
-	}
-	
-	@Override
-	public void onStart() {
-		Logger.info("Starting LDAP authentication plugin...");
-		super.onStart();
-		for (java.util.Iterator<AuthProvider> it = Registry.getProviders().iterator(); it.hasNext();) {
-			Logger.info("Registered provider: " + it.next().getKey());
-		}
 	}
 	
 	public static class LdapIdentity {
