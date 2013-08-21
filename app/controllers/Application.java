@@ -20,6 +20,7 @@ import views.html.account.signup.*;
 
 import auth.providers.LdapUsernamePasswordAuthProvider;
 import auth.providers.LdapUsernamePasswordAuthProvider.LdapLogin;
+import auth.providers.LocalUserAuthProviderHelper;
 import auth.providers.LocalUsernamePasswordAuthProvider;
 import auth.providers.LocalUsernamePasswordAuthProvider.MyLogin;
 import auth.providers.LocalUsernamePasswordAuthProvider.MySignup;
@@ -64,21 +65,11 @@ public class Application extends Controller {
     }
 
     public static Result login() {
-        return ok(login.render(LocalUsernamePasswordAuthProvider.LOGIN_FORM));
+        return LocalUserAuthProviderHelper.login();
     }
 
     public static Result doLogin() {
-        com.feth.play.module.pa.controllers.Authenticate.noCache(response());
-        final Form<MyLogin> filledForm = LocalUsernamePasswordAuthProvider.LOGIN_FORM
-                .bindFromRequest();
-        if (filledForm.hasErrors()) {
-            // User did not fill everything properly
-        	flash(Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
-            return badRequest(login.render(filledForm));
-        } else {
-            // Everything was filled
-            return LocalUsernamePasswordAuthProvider.handleLogin(ctx());
-        }
+        return LocalUserAuthProviderHelper.doLogin();
     }
     
     public static Result ldapLogin() {
@@ -99,9 +90,13 @@ public class Application extends Controller {
     }
 
     public static Result signup() {
-        return ok(signup.render(LocalUsernamePasswordAuthProvider.SIGNUP_FORM));
+        return LocalUserAuthProviderHelper.signup();
     }
 
+    public static Result doSignup() {
+        return LocalUserAuthProviderHelper.doSignup();
+    }
+    
     public static Result jsRoutes() {
         return ok(
                 Routes.javascriptRouter("jsRoutes",
@@ -109,23 +104,6 @@ public class Application extends Controller {
                 .as("text/javascript");
     }
 
-    public static Result doSignup() {
-        com.feth.play.module.pa.controllers.Authenticate.noCache(response());
-        final Form<MySignup> filledForm = LocalUsernamePasswordAuthProvider.SIGNUP_FORM
-                .bindFromRequest();
-        if (filledForm.hasErrors()) {
-            // User did not fill everything properly
-        	//flash(Application.FLASH_ERROR_KEY, toErrorString(filledForm.errors(), "playauthenticate.signup"));
-        	flash(Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
-            return badRequest(signup.render(filledForm));
-        } else {
-            // Everything was filled
-            // do something with your part of the form before handling the user
-            // signup
-            return UsernamePasswordAuthProvider.handleSignup(ctx());
-        }
-    }
-    
     /**
      * 
      * @param errorMap

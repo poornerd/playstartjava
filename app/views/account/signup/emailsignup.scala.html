@@ -1,0 +1,56 @@
+@(signupForm: Form[_])
+
+@import helper._
+@import helper.twitterBootstrap._
+@import com.feth.play.module.pa.providers.AuthProvider.Registry
+
+@main(Messages("playauthenticate.signup.title")) {
+    
+  <div class="row">
+    <div class="span6">
+      <h1>@Messages("playauthenticate.signup.title")</h1>
+    </div>
+  </div>
+
+  <div id="signup" class="row">
+
+    <div class="span9">
+        @* Display proprietary login form *@
+    	@helper.form(routes.Application.doSignup) {
+    	
+            @if(signupForm.hasGlobalErrors) { 
+                <p class="error">
+		            <span class="label label-important">@signupForm.globalError.message</span>
+		        </p>
+            }
+            
+            @account._emailPartial(signupForm)             
+
+            @inputText(
+                signupForm("firstName"),
+                '_label -> Messages("playauthenticate.signup.firstName")
+            )
+            @inputText(
+                signupForm("lastName"),
+                '_label -> Messages("playauthenticate.signup.lastName")
+            )
+             
+            @account._passwordPartial(signupForm)
+
+            <input type="submit" value="@Messages("playauthenticate.signup.now")" class="btn btn-primary">
+    	}
+    </div>
+    <div class="span3">
+        @defining(Registry.getProviders()) { providers =>
+            @if(providers != null && providers.size() > 0) {
+            <div class="row">
+                @Messages("playauthenticate.login.oauth")
+                @* Display list of available providers *@
+                @account._providerPartial(skipCurrent=false)
+            </div>
+            }
+        }
+    </div>
+  </div>
+
+}
