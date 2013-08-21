@@ -59,38 +59,42 @@ public class LocalUserAuthProviderHelper {
 		
     public static Result login() {
     	AuthProvider p = getProviderInstance();
-        if (p instanceof LocalUsernamePasswordAuthProvider) {
-        	return controllers.Application.ok(login.render(LocalUsernamePasswordAuthProvider.LOGIN_FORM));
-        } else if (p instanceof EmailPasswordAuthProvider) {
-        	return controllers.Application.ok(emaillogin.render(EmailPasswordAuthProvider.LOGIN_FORM));
-        }
+    	if (p != null) {
+	        if (p instanceof LocalUsernamePasswordAuthProvider) {
+	        	return controllers.Application.ok(login.render(LocalUsernamePasswordAuthProvider.LOGIN_FORM));
+	        } else if (p instanceof EmailPasswordAuthProvider) {
+	        	return controllers.Application.ok(emaillogin.render(EmailPasswordAuthProvider.LOGIN_FORM));
+	        }
+    	}
         return controllers.Application.badRequest();
     }
 
     public static Result doLogin() {
         com.feth.play.module.pa.controllers.Authenticate.noCache(controllers.Application.response());
         AuthProvider p = getProviderInstance();
-        if (p instanceof LocalUsernamePasswordAuthProvider) {
-	        final Form<LocalUsernamePasswordAuthProvider.MyLogin> filledForm = LocalUsernamePasswordAuthProvider.LOGIN_FORM
-	                .bindFromRequest();
-	        if (filledForm.hasErrors()) {
-	            // User did not fill everything properly
-	        	controllers.Application.flash(controllers.Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
-	            return controllers.Application.badRequest(login.render(filledForm));
-	        } else {
-	            // Everything was filled
-	            return LocalUsernamePasswordAuthProvider.handleLogin(controllers.Application.ctx());
-	        }
-        } else if (p instanceof EmailPasswordAuthProvider) {
-	        final Form<EmailPasswordAuthProvider.MyLogin> filledForm = EmailPasswordAuthProvider.LOGIN_FORM
-	                .bindFromRequest();
-	        if (filledForm.hasErrors()) {
-	            // User did not fill everything properly
-	        	controllers.Application.flash(controllers.Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
-	            return controllers.Application.badRequest(emaillogin.render(filledForm));
-	        } else {
-	            // Everything was filled
-	            return EmailPasswordAuthProvider.handleLogin(controllers.Application.ctx());
+        if (p != null) {
+	        if (p instanceof LocalUsernamePasswordAuthProvider) {
+		        final Form<LocalUsernamePasswordAuthProvider.MyLogin> filledForm = LocalUsernamePasswordAuthProvider.LOGIN_FORM
+		                .bindFromRequest();
+		        if (filledForm.hasErrors()) {
+		            // User did not fill everything properly
+		        	controllers.Application.flash(controllers.Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
+		            return controllers.Application.badRequest(login.render(filledForm));
+		        } else {
+		            // Everything was filled
+		            return LocalUsernamePasswordAuthProvider.handleLogin(controllers.Application.ctx());
+		        }
+	        } else if (p instanceof EmailPasswordAuthProvider) {
+		        final Form<EmailPasswordAuthProvider.MyLogin> filledForm = EmailPasswordAuthProvider.LOGIN_FORM
+		                .bindFromRequest();
+		        if (filledForm.hasErrors()) {
+		            // User did not fill everything properly
+		        	controllers.Application.flash(controllers.Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
+		            return controllers.Application.badRequest(emaillogin.render(filledForm));
+		        } else {
+		            // Everything was filled
+		            return EmailPasswordAuthProvider.handleLogin(controllers.Application.ctx());
+		        }
 	        }
         }
         return controllers.Application.badRequest();
@@ -98,38 +102,42 @@ public class LocalUserAuthProviderHelper {
     
     public static Result signup() {
     	AuthProvider p = getProviderInstance();
-        if (p instanceof LocalUsernamePasswordAuthProvider) {
-        	return controllers.Application.ok(signup.render(LocalUsernamePasswordAuthProvider.SIGNUP_FORM));
-        } else if (p instanceof EmailPasswordAuthProvider) {
-        	return controllers.Application.ok(emailsignup.render(EmailPasswordAuthProvider.SIGNUP_FORM));
-        }
+    	if (p != null) {
+	        if (p instanceof LocalUsernamePasswordAuthProvider) {
+	        	return controllers.Application.ok(signup.render(LocalUsernamePasswordAuthProvider.SIGNUP_FORM));
+	        } else if (p instanceof EmailPasswordAuthProvider) {
+	        	return controllers.Application.ok(emailsignup.render(EmailPasswordAuthProvider.SIGNUP_FORM));
+	        }
+    	}
         return controllers.Application.badRequest();
     }
 
     public static Result doSignup() {
         com.feth.play.module.pa.controllers.Authenticate.noCache(controllers.Application.response());
         AuthProvider p = getProviderInstance();
-        if (p instanceof LocalUsernamePasswordAuthProvider) {
-	        final Form<LocalUsernamePasswordAuthProvider.MySignup> filledForm = LocalUsernamePasswordAuthProvider.SIGNUP_FORM
-	                .bindFromRequest();
-	        if (filledForm.hasErrors()) {
-	            // User did not fill everything properly
-	        	controllers.Application.flash(controllers.Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
-	            return controllers.Application.badRequest(signup.render(filledForm));
-	        } else {
-	            // Everything was filled
-	            return LocalUsernamePasswordAuthProvider.handleSignup(controllers.Application.ctx());
-	        }
-        } else if (p instanceof EmailPasswordAuthProvider) {
-	        final Form<EmailPasswordAuthProvider.MySignup> filledForm = EmailPasswordAuthProvider.SIGNUP_FORM
-	                .bindFromRequest();
-	        if (filledForm.hasErrors()) {
-	            // User did not fill everything properly
-	        	controllers.Application.flash(controllers.Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
-	            return controllers.Application.badRequest(emailsignup.render(filledForm));
-	        } else {
-	            // Everything was filled
-	            return EmailPasswordAuthProvider.handleSignup(controllers.Application.ctx());
+        if (p != null) {
+	        if (p instanceof LocalUsernamePasswordAuthProvider) {
+		        final Form<LocalUsernamePasswordAuthProvider.MySignup> filledForm = LocalUsernamePasswordAuthProvider.SIGNUP_FORM
+		                .bindFromRequest();
+		        if (filledForm.hasErrors()) {
+		            // User did not fill everything properly
+		        	controllers.Application.flash(controllers.Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
+		            return controllers.Application.badRequest(signup.render(filledForm));
+		        } else {
+		            // Everything was filled
+		            return LocalUsernamePasswordAuthProvider.handleSignup(controllers.Application.ctx());
+		        }
+	        } else if (p instanceof EmailPasswordAuthProvider) {
+		        final Form<EmailPasswordAuthProvider.MySignup> filledForm = EmailPasswordAuthProvider.SIGNUP_FORM
+		                .bindFromRequest();
+		        if (filledForm.hasErrors()) {
+		            // User did not fill everything properly
+		        	controllers.Application.flash(controllers.Application.FLASH_ERROR_KEY, Messages.get("error.invalidData"));
+		            return controllers.Application.badRequest(emailsignup.render(filledForm));
+		        } else {
+		            // Everything was filled
+		            return EmailPasswordAuthProvider.handleSignup(controllers.Application.ctx());
+		        }
 	        }
         }
         return controllers.Application.badRequest();
